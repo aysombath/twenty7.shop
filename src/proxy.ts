@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
  * Enhanced Access Sentinel Middleware
  * Managing dual-token (Access/Refresh) authorization flow.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Extracting modern token identifiers
