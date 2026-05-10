@@ -12,6 +12,18 @@ import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 
 export default function LoginPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="min-h-screen w-full flex items-center justify-center bg-zinc-950">
+        <Loader2 className="size-8 animate-spin text-blue-500" />
+      </div>
+    }>
+      <LoginForm />
+    </React.Suspense>
+  )
+}
+
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = React.useState(false)
