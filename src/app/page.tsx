@@ -77,7 +77,7 @@ const PromotionSlideshow = ({ products }: { products: ShopProduct[] }) => {
                         {p.discountPrice ? "Promotion Price" : "From (Variant Promo)"}
                      </span>
                      <span className="text-5xl font-black text-white italic tracking-tighter">
-                        ${(p.discountPrice || (p.variants.find(v => v.discountPrice)?.discountPrice) || 0).toLocaleString()}
+                        ${(p.discountPrice || (p.variants?.find(v => v.discountPrice)?.discountPrice) || 0).toLocaleString()}
                      </span>
                   </div>
                   <div className="w-px h-12 bg-white/10" />
