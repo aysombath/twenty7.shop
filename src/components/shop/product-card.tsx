@@ -32,6 +32,7 @@ export type ShopProduct = {
   discountStart?: string
   discountEnd?: string
   variants?: ProductVariant[]
+  categoryId?: string
   isNew?: boolean
   isPopular?: boolean
 }

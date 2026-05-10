@@ -142,7 +142,7 @@ export default function ShopHomePage() {
       }
    })
 
-   const { data: products = [] as ShopProduct[], isLoading: isProductsLoading } = useQuery({
+   const { data: products = [], isLoading: isProductsLoading } = useQuery<ShopProduct[]>({
       queryKey: ['products-public'],
       queryFn: async () => {
          const res = await fetch('/api/products')
@@ -153,7 +153,7 @@ export default function ShopHomePage() {
             name: p.name,
             price: parseFloat(p.price) || 0,
             category: p.category_name || p.category,
-            categoryId: p.category,
+            categoryId: p.category?.toString(),
             image: p.image_url || "https://images.unsplash.com/photo-1523275335684?auto=format&fit=crop&q=80&w=600&h=800",
             discountPrice: p.discount_price ? parseFloat(p.discount_price) : undefined,
             discountStart: p.discount_start,
@@ -171,7 +171,7 @@ export default function ShopHomePage() {
    // ── Logic ────────────────────────────────────────────────────────────────────
    const filteredProducts = React.useMemo(() => {
       if (selectedCategory === "all") return products
-      return products.filter(p => p.categoryId === selectedCategory)
+      return products.filter((p: ShopProduct) => p.categoryId === selectedCategory)
    }, [products, selectedCategory])
 
    const popularProducts = React.useMemo(() => {
